@@ -14,12 +14,12 @@ Calculadora com Javascript
 ## Especificações do projeto
 
 A calculadora construída deverá **obrigatoriamente** possuir as seguintes funções:
-- Operação de adição;
-- Operação de subtração;
-- Operação de multiplicação;
-- Operação de divisão;
-- Potência quadrada;
-- Raiz quadrada;
+- Adição;
+- Subtração;
+- Multiplicação;
+- Divisão;
+- Potência;
+- Raiz;
 - Percentual;
 - Salvar histórico das operações;
 - Limpar histórico das operações.
