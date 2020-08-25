@@ -20,12 +20,6 @@ A calculadora construída deverá **obrigatoriamente** possuir as seguintes fun�
 - Operação de divisão;
 - Potência quadrada;
 - Raiz quadrada;
-- C (Limpar toda conta);
-- *Backspace* (Limpar dígito a dígito);
+- Percentual;
 - Salvar histórico das operações;
 - Limpar histórico das operações.
-
-A calculadora pode ter as seguintes funcionalidades **opcionais**:
-- Inversão de sinal;
-- Percentual;
-- CE (Limpar toda parte numérica em evidência no momento);
