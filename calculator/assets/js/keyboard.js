@@ -31,7 +31,7 @@ $(document).ready(function () {
         const keyName = event.key;
         if (!isNaN(keyName) || keyName == ",") {
             writeValue(keyName);
-        } else if (keyName == "+" || keyName == "-" || keyName == "*" || keyName == "/" || e.which == 13) {
+        } else if (keyName == "+" || keyName == "-" || keyName == "*" || keyName == "/" || keyName == "%" || e.which == 13) {
             let signal = "";
 
             if (keyName == "+")
@@ -42,6 +42,8 @@ $(document).ready(function () {
                 signal = '<span class="mdi mdi-close"></span>';
             else if (keyName == "/")
                 signal = '<span class="mdi mdi-division"></span>';
+            else if (keyName == "%")
+                signal = '<span class="mdi mdi-percent-outline"></span>';
 
             writeOperation(signal, keyName);
 
