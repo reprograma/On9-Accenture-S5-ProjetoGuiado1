@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pokedex</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Pokedex</h1>
+  </header>
+  <!-- <aside class="toolbar"></aside> -->
+  <main>
+    <form class="pokedex-control">
+      <div class="form-control">
+        <label for="filter-name">Name:</label>
+        <input type="text" id="filter-name">
+      </div>
+      <div class="form-control">
+        <label for="filter-type">Type:</label>
+        <select id="filter-type">
+          <option value="">All</option>
+        </select>
+      </div>
+      <div class="form-control">
+        <label for="sort">Sort:</label>
+        <select id="sort-type">
+          <option>ID (asc)</option>
+          <option>ID (desc)</option>
+          <option>A-Z</option>
+          <option>Z-A</option>
+        </select>
+      </div>
+    </form>
+    <section class="pokedex"></section>
+  </main>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
