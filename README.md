@@ -14,12 +14,13 @@ Pokedex em Javascript
 ## Especificações do projeto
 
 A Pokedex construída deverá **obrigatoriamente** possuir as seguintes funções:
-- Filtra pokemons por:
+- Filtrar pokemons por:
     - Nome
     - Tipo
 - Ordenar pokemons por:
     - Id (crescente e decrescente)
     - Nome (crescente e decrescente)
 - Adicionar novo pokemon;
-- Editar status e tipo de pokemon existente;
+- Obter dados de um pokemon;
+- Editar pokemon existente;
 - Excluir pokemon.
