@@ -21,9 +21,25 @@ function deletePokemon(pokemonList, id) {
 
 function addPokemon(pokemonList, name,
     hp, attack, defense, speed, specialAttack, specialDefense, types) {
-        // Seu código aqui
-        // Atenção types vem como uma stringona, cabe a você transformar num array
+    // Seu código aqui
+    // Atenção types vem como uma stringona, cabe a você transformar num array
 
-        // Retorne a lista atualizada
-        return pokemonList;
+    // Retorne a lista atualizada
+    return pokemonList;
+}
+
+function getPokemon(pokemonList, id) {
+    // Seu código aqui
+
+    // Retorne um pokemon da lista que tenha o id enviado
+    return {};
+}
+
+function editPokemon(pokemonList, id, name,
+    hp, attack, defense, speed, specialAttack, specialDefense, types) {
+    // Seu código aqui
+    // Atenção types vem como uma stringona, cabe a você transformar num array
+
+    // Retorne a lista atualizada
+    return pokemonList;
 }
