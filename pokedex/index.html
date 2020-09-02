@@ -1,43 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pokedex</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </head>
+
 <body>
-  <header>
-    <h1>Pokedex</h1>
-  </header>
-  <!-- <aside class="toolbar"></aside> -->
-  <main>
-    <form class="pokedex-control">
-      <div class="form-control">
-        <label for="filter-name">Name:</label>
-        <input type="text" id="filter-name">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Pokedex</a>
+    <form class="form-inline">
+      <div class="form-group mx-sm-3 ">
+        <input type="text" id="filter-name" class="form-control" placeholder="Nome">
       </div>
-      <div class="form-control">
-        <label for="filter-type">Type:</label>
-        <select id="filter-type">
-          <option value="">All</option>
+      <div class="form-group mx-sm-3">
+        <select id="filter-type" class="form-control">
+          <option value="">Todos os tipos</option>
         </select>
       </div>
-      <div class="form-control">
-        <label for="sort">Sort:</label>
-        <select id="sort-type">
+      <div class="form-group mx-sm-3">
+        <select id="sort-type" class="form-control">
+          <option value="">Ordenar</option>
           <option>ID (asc)</option>
           <option>ID (desc)</option>
           <option>A-Z</option>
           <option>Z-A</option>
         </select>
       </div>
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-new" type="submit">Novo</button>
     </form>
+  </nav>
+  <div class="container">
     <section class="pokedex"></section>
-  </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="ckb-types">
+          </div>
+          <hr />
+          <div class="form-row">
+            <div class="col">
+              <label for="hp">HP</label>
+              <input type="number" class="form-control" id="hp">
+            </div>
+            <div class="col">
+              <label for="atk">Ataque</label>
+              <input type="number" class="form-control" id="atk">
+            </div>
+            <div class="col">
+              <label for="def">Defesa</label>
+              <input type="number" class="form-control" id="def">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <label for="speed">Velocidade</label>
+              <input type="number" class="form-control" id="speed">
+            </div>
+            <div class="col">
+              <label for="satk">Ataque Especial</label>
+              <input type="number" class="form-control" id="satk">
+            </div>
+            <div class="col">
+              <label for="sdef">Defesa Especial</label>
+              <input type="number" class="form-control" id="sdef">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary btn-save">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="js/app.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
