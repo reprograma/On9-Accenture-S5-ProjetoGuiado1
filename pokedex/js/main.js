@@ -1,12 +1,11 @@
 $(document).ready(function () {
-  let allPokemons = [];
   let pokemonTypes = ["bug", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water"]
 
   fetch('https://borgesdn.github.io/pokedex-source/pokedex.json')
     .then(res => res.json())
     .then(json => {
-      allPokemons = json
-      load(allPokemons)
+      pokemonList = json
+      load(pokemonList)
     })
 
   $('#filter-name').on('keyup', e => {
@@ -54,33 +53,33 @@ $(document).ready(function () {
     });
 
     if ($("#id").val() == '0') {
-      allPokemons = addPokemon(allPokemons, $("#name").val(), $("#hp").val(),
+      pokemonList = addPokemon(pokemonList, $("#name").val(), $("#hp").val(),
         $("#atk").val(), $("#def").val(),
         $("#speed").val(), $("#satk").val(),
         $("#def").val(), types)
     } else {
-      allPokemons = editPokemon(allPokemons, $("#id").val(), $("#name").val(), $("#hp").val(),
+      pokemonList = editPokemon(pokemonList, $("#id").val(), $("#name").val(), $("#hp").val(),
         $("#atk").val(), $("#def").val(),
         $("#speed").val(), $("#satk").val(),
         $("#def").val(), types)
     }
-    load(allPokemons)
+    load(pokemonList)
   })
 
   function filter() {
     const name = $('#filter-name').val()
     const type = $('#filter-type').val()
 
-    const filteredList = filterPokemon(allPokemons, name, type);
+    const filteredList = filterPokemon(pokemonList, name, type);
     load(filteredList);
 
     return filteredList;
   }
 
   function sort() {
-    const pokemonList = filter();
+    const filteredList = filter();
     const sortExpression = $('#sort-type').val();
-    const sortedList = sortPokemon(pokemonList, sortExpression);
+    const sortedList = sortPokemon(filteredList, sortExpression);
 
     load(sortedList);
   }
@@ -88,7 +87,7 @@ $(document).ready(function () {
   function edit(e) {
     e.preventDefault();
 
-    const pokemon = getPokemon(allPokemons, $(this).data("id"))
+    const pokemon = getPokemon(pokemonList, $(this).data("id"))
 
     $("#id").val(pokemon.id)
     $("#name").val(pokemon.name)
@@ -113,9 +112,9 @@ $(document).ready(function () {
     $('#filter-name').val("")
     $('#filter-type').val("")
     $('#sort-type').val("")
-    allPokemons = deletePokemon(allPokemons, $(this).data("id"))
+    pokemonList = deletePokemon(pokemonList, $(this).data("id"))
 
-    load(allPokemons)
+    load(pokemonList)
   }
 
   function load(pokedex) {

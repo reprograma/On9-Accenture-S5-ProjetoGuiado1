@@ -1,26 +1,27 @@
-function filterPokemon(pokemonList, name, type) {
+let pokemonList = [];
+
+function filterPokemon(name, type) {
     // Seu código aqui
 
     // Retorne a lista filtrada
     return pokemonList;
 }
 
-function sortPokemon(pokemonList, sortExpression) {
+function sortPokemon(sortExpression) {
     // Seu código aqui
 
     // Retorne a lista ordenada
     return pokemonList;
 }
 
-function deletePokemon(pokemonList, id) {
+function deletePokemon(id) {
     // Seu código aqui
 
     // Retorne a lista com o item excluído
     return pokemonList;
 }
 
-function addPokemon(pokemonList, name,
-    hp, attack, defense, speed, specialAttack, specialDefense, types) {
+function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
     // Atenção types vem como uma stringona, cabe a você transformar num array
 
@@ -28,15 +29,14 @@ function addPokemon(pokemonList, name,
     return pokemonList;
 }
 
-function getPokemon(pokemonList, id) {
+function getPokemon(id) {
     // Seu código aqui
 
     // Retorne um pokemon da lista que tenha o id enviado
     return {};
 }
 
-function editPokemon(pokemonList, id, name,
-    hp, attack, defense, speed, specialAttack, specialDefense, types) {
+function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
     // Atenção types vem como uma stringona, cabe a você transformar num array
 
