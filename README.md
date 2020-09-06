@@ -4,7 +4,7 @@ Pokedex em Javascript
 
 ## Objetivos
 
-**Geral:** Implementar funcionalidades a um Pokedex
+**Geral:** Implementar funcionalidades a uma Pokedex
 
 **Específico:**
 - Exercitar utilização de lógica básica;
@@ -24,3 +24,8 @@ A Pokedex construída deverá **obrigatoriamente** possuir as seguintes funçõe
 - Obter dados de um pokemon;
 - Editar pokemon existente;
 - Excluir pokemon.
+
+Observação: A imagem dos pokemons já existe numa pasta e é buscada através do nome do mesmo. Para adicionar novos pokemons utilize um da lista [Geração 2](https://veekun.com/dex/pokemon/search?sort=evolution-chain&introduced_in=2). Só não utilize mega evoluções... Todas as informações de nome, tipo e status dos pokemons estão nesse link.
+
+
+**Divirtam-se!!**
