@@ -2,14 +2,22 @@ let pokemonList = [];
 
 function filterPokemon(name, type, pokemonList) {
   let list = pokemonList;
-  if (name !== "") {
-    list = pokemonList.filter((item) => {
-      console.log(item);
-      return item.name == name;
-    });
-  }
 
-  if (type) {
+  if (name && type) {
+    list = pokemonList
+      .filter((pokemon) => {
+        const searchName = new RegExp(name, "i");
+        const checkName = searchName.test(pokemon.name);
+        return checkName;
+      })
+      .filter((item) => {
+        const types = item.type;
+        const hasType = types.find((tipo) => tipo == type);
+        if (hasType) {
+          return item;
+        }
+      });
+  } else if (!name && type) {
     list = pokemonList.filter((item) => {
       const types = item.type;
       const hasType = types.find((tipo) => tipo == type);
@@ -17,7 +25,14 @@ function filterPokemon(name, type, pokemonList) {
         return item;
       }
     });
+  } else {
+    list = pokemonList.filter((pokemon) => {
+      const searchName = new RegExp(name, "i");
+      const checkName = searchName.test(pokemon.name);
+      return checkName;
+    });
   }
+
   return list;
 }
 
