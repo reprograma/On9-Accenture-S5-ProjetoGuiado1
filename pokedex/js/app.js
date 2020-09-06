@@ -7,7 +7,7 @@ function filterPokemon(name, type) {
     return pokemonList;
 }
 
-function sortPokemon(sortExpression) {
+function sortPokemon(filteredList, sortExpression) {
     // Seu código aqui
 
     // Retorne a lista ordenada
@@ -16,17 +16,11 @@ function sortPokemon(sortExpression) {
 
 function deletePokemon(id) {
     // Seu código aqui
-
-    // Retorne a lista com o item excluído
-    return pokemonList;
 }
 
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
     // Atenção types vem como uma stringona, cabe a você transformar num array
-
-    // Retorne a lista atualizada
-    return pokemonList;
 }
 
 function getPokemon(id) {
@@ -39,7 +33,4 @@ function getPokemon(id) {
 function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
     // Atenção types vem como uma stringona, cabe a você transformar num array
-
-    // Retorne a lista atualizada
-    return pokemonList;
 }

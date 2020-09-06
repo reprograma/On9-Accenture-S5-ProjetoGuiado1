@@ -53,12 +53,12 @@ $(document).ready(function () {
     });
 
     if ($("#id").val() == '0') {
-      pokemonList = addPokemon(pokemonList, $("#name").val(), $("#hp").val(),
+      addPokemon($("#name").val(), $("#hp").val(),
         $("#atk").val(), $("#def").val(),
         $("#speed").val(), $("#satk").val(),
         $("#def").val(), types)
     } else {
-      pokemonList = editPokemon(pokemonList, $("#id").val(), $("#name").val(), $("#hp").val(),
+      editPokemon($("#id").val(), $("#name").val(), $("#hp").val(),
         $("#atk").val(), $("#def").val(),
         $("#speed").val(), $("#satk").val(),
         $("#def").val(), types)
@@ -70,7 +70,7 @@ $(document).ready(function () {
     const name = $('#filter-name').val()
     const type = $('#filter-type').val()
 
-    const filteredList = filterPokemon(pokemonList, name, type);
+    const filteredList = filterPokemon(name, type);
     load(filteredList);
 
     return filteredList;
@@ -87,7 +87,7 @@ $(document).ready(function () {
   function edit(e) {
     e.preventDefault();
 
-    const pokemon = getPokemon(pokemonList, $(this).data("id"))
+    const pokemon = getPokemon($(this).data("id"))
 
     $("#id").val(pokemon.id)
     $("#name").val(pokemon.name)
@@ -112,7 +112,7 @@ $(document).ready(function () {
     $('#filter-name').val("")
     $('#filter-type').val("")
     $('#sort-type').val("")
-    pokemonList = deletePokemon(pokemonList, $(this).data("id"))
+    deletePokemon($(this).data("id"))
 
     load(pokemonList)
   }
