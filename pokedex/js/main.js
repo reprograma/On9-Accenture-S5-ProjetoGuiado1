@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  let pokemonTypes = ["bug", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water"]
+  let pokemonTypes = ["bug", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water", "dark"]
 
   fetch('https://borgesdn.github.io/pokedex-source/pokedex.json')
     .then(res => res.json())
