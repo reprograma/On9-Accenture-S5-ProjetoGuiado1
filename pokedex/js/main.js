@@ -1,141 +1,141 @@
-$(document).ready(function () {
-  let pokemonTypes = ["bug", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water", "dark"]
+$(document).ready(function() {
+    let pokemonTypes = ["bug", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water", "dark"]
 
-  fetch('https://borgesdn.github.io/pokedex-source/pokedex.json')
-    .then(res => res.json())
-    .then(json => {
-      pokemonList = json
-      load(pokemonList)
+    fetch('https://borgesdn.github.io/pokedex-source/pokedex.json')
+        .then(res => res.json())
+        .then(json => {
+            pokemonList = json
+            load(pokemonList)
+        })
+
+    $('#filter-name').on('keyup', e => {
+        filter()
     })
 
-  $('#filter-name').on('keyup', e => {
-    filter()
-  })
+    $('#filter-type').on('change', e => {
+        e.preventDefault()
+        filter()
+        $('#filter-type').blur()
+    })
 
-  $('#filter-type').on('change', e => {
-    e.preventDefault()
-    filter()
-    $('#filter-type').blur()
-  })
+    $('#sort-type').on('change', e => {
+        e.preventDefault()
+        sort()
+        $('#sort-type').blur()
+    })
 
-  $('#sort-type').on('change', e => {
-    e.preventDefault()
-    sort()
-    $('#sort-type').blur()
-  })
+    $('.btn-new').on('click', function(e) {
+        e.preventDefault()
+        cleanForm()
+        $(".modal-title").html("Cadastrar Pokemon")
+        $(".modal").modal('show')
+    })
 
-  $('.btn-new').on('click', function (e) {
-    e.preventDefault()
-    cleanForm()
-    $(".modal-title").html("Cadastrar Pokemon")
-    $(".modal").modal('show')
-  })
+    function cleanForm() {
+        $("#id").val(0)
+        $("#name").val("")
+        $("#hp").val("")
+        $("#atk").val("")
+        $("#def").val("")
+        $("#speed").val("")
+        $("#satk").val("")
+        $("#def").val("")
 
-  function cleanForm() {
-    $("#id").val(0)
-    $("#name").val("")
-    $("#hp").val("")
-    $("#atk").val("")
-    $("#def").val("")
-    $("#speed").val("")
-    $("#satk").val("")
-    $("#def").val("")
-
-    $('.type').prop('checked', false)
-  }
-
-  $(".btn-save").on('click', function (e) {
-    e.preventDefault()
-
-    let types = ''
-    $('.type:checked').each(function () {
-      types += `${$(this).val()};`;
-    });
-
-    if ($("#id").val() == '0') {
-      addPokemon($("#name").val(), $("#hp").val(),
-        $("#atk").val(), $("#def").val(),
-        $("#speed").val(), $("#satk").val(),
-        $("#def").val(), types)
-    } else {
-      editPokemon($("#id").val(), $("#name").val(), $("#hp").val(),
-        $("#atk").val(), $("#def").val(),
-        $("#speed").val(), $("#satk").val(),
-        $("#def").val(), types)
-    }
-    load(pokemonList)
-  })
-
-  function filter() {
-    const name = $('#filter-name').val()
-    const type = $('#filter-type').val()
-
-    const filteredList = filterPokemon(name, type);
-    load(filteredList);
-
-    return filteredList;
-  }
-
-  function sort() {
-    const filteredList = filter();
-    const sortExpression = $('#sort-type').val();
-    const sortedList = sortPokemon(filteredList, sortExpression);
-
-    load(sortedList);
-  }
-
-  function edit(e) {
-    e.preventDefault();
-
-    const pokemon = getPokemon($(this).data("id"))
-
-    $("#id").val(pokemon.id)
-    $("#name").val(pokemon.name)
-    $("#hp").val(pokemon.stats.hp)
-    $("#atk").val(pokemon.stats.attack)
-    $("#def").val(pokemon.stats.defense)
-    $("#speed").val(pokemon.stats.speed)
-    $("#satk").val(pokemon.stats['sp-atk'])
-    $("#sdef").val(pokemon.stats['sp-def'])
-
-    for (const type of pokemon.type) {
-      $(`.type[value=${type}`).prop('checked', true)
+        $('.type').prop('checked', false)
     }
 
-    $(".modal-title").html(`Editar ${pokemon.name}`)
-    $(".modal").modal('show')
-  }
+    $(".btn-save").on('click', function(e) {
+        e.preventDefault()
 
-  function exclude(e) {
-    e.preventDefault();
+        let types = ''
+        $('.type:checked').each(function() {
+            types += `${$(this).val()};`;
+        });
 
-    $('#filter-name').val("")
-    $('#filter-type').val("")
-    $('#sort-type').val("")
-    deletePokemon($(this).data("id"))
+        if ($("#id").val() == '0') {
+            addPokemon($("#name").val(), $("#hp").val(),
+                $("#atk").val(), $("#def").val(),
+                $("#speed").val(), $("#satk").val(),
+                $("#def").val(), types)
+        } else {
+            editPokemon($("#id").val(), $("#name").val(), $("#hp").val(),
+                $("#atk").val(), $("#def").val(),
+                $("#speed").val(), $("#satk").val(),
+                $("#def").val(), types)
+        }
+        load(pokemonList)
+    })
 
-    load(pokemonList)
-  }
+    function filter() {
+        const name = $('#filter-name').val()
+        const type = $('#filter-type').val()
 
-  function load(pokedex) {
-    const view = pokedex
-      .map(p => createCard(p))
-      .join('')
-    $('.pokedex').html(view + '<div class="warning hidden">Nenhum pokemon foi encontrado.</div>')
+        const filteredList = filterPokemon(name, type);
+        load(filteredList);
 
-    $(".btn-edit").off("click")
-    $(".btn-edit").on("click", edit)
+        return filteredList;
+    }
 
-    $(".btn-trash").off("click")
-    $(".btn-trash").on("click", exclude)
-  }
+    function sort() {
+        const filteredList = filter();
+        const sortExpression = $('#sort-type').val();
+        const sortedList = sortPokemon(filteredList, sortExpression);
 
-  function createCard(pokemon) {
-    const types = pokemon.type
-      .map(t => `<span class="pokemon-type background-${t}">${t}</span>`)
-      .join('')
-    const img = pokemon.name.replace(/['\.]/g, '').replace(/\s/g, '-')
-    return `<div class="pokemon" data-name="${pokemon.name}" data-type="${pokemon.type}" tabindex="${pokemon.id}">
+        load(sortedList);
+    }
+
+    function edit(e) {
+        e.preventDefault();
+
+        const pokemon = getPokemon($(this).data("id"))
+
+        $("#id").val(pokemon.id)
+        $("#name").val(pokemon.name)
+        $("#hp").val(pokemon.stats.hp)
+        $("#atk").val(pokemon.stats.attack)
+        $("#def").val(pokemon.stats.defense)
+        $("#speed").val(pokemon.stats.speed)
+        $("#satk").val(pokemon.stats['sp-atk'])
+        $("#sdef").val(pokemon.stats['sp-def'])
+
+        for (const type of pokemon.type) {
+            $(`.type[value=${type}`).prop('checked', true)
+        }
+
+        $(".modal-title").html(`Editar ${pokemon.name}`)
+        $(".modal").modal('show')
+    }
+
+    function exclude(e) {
+        e.preventDefault();
+
+        $('#filter-name').val("")
+        $('#filter-type').val("")
+        $('#sort-type').val("")
+        deletePokemon($(this).data("id"))
+
+        load(pokemonList)
+    }
+
+    function load(pokedex) {
+        const view = pokedex
+            .map(p => createCard(p))
+            .join('')
+        $('.pokedex').html(view + '<div class="warning hidden">Nenhum pokemon foi encontrado.</div>')
+
+        $(".btn-edit").off("click")
+        $(".btn-edit").on("click", edit)
+
+        $(".btn-trash").off("click")
+        $(".btn-trash").on("click", exclude)
+    }
+
+    function createCard(pokemon) {
+        const types = pokemon.type
+            .map(t => `<span class="pokemon-type background-${t}">${t}</span>`)
+            .join('')
+        const img = pokemon.name.replace(/['\.]/g, '').replace(/\s/g, '-')
+        return `<div class="pokemon" data-name="${pokemon.name}" data-type="${pokemon.type}" tabindex="${pokemon.id}">
     <div class="btn-toolbar float-right mt-2" role="toolbar" aria-label="Toolbar with button groups">
       <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
         <button type="button" class="btn btn-link btn-edit" data-id="${pokemon.id}">
@@ -161,27 +161,27 @@ $(document).ready(function () {
       </section>
       <section class="pokemon-stats">${loadStats(pokemon.stats)}</section>
     </div>`
-  }
+    }
 
-  function loadTypes(types) {
-    types.map(t => $('#filter-type').append(`<option>${t}</option>`))
+    function loadTypes(types) {
+        types.map(t => $('#filter-type').append(`<option>${t}</option>`))
 
-    types.map(t => $('.ckb-types').append(`<div class="form-check form-check-inline"><input class="form-check-input type" type="checkbox"" value="${t}"><label class="form-check-label">${t}</label></div>`))
-  }
+        types.map(t => $('.ckb-types').append(`<div class="form-check form-check-inline"><input class="form-check-input type" type="checkbox"" value="${t}"><label class="form-check-label">${t}</label></div>`))
+    }
 
-  function loadStats(stats) {
-    return Object.entries(stats)
-      .filter(([name, value]) => !['total'].includes(name))
-      .map(([name, value]) =>
-        `<div class="stat-row">
+    function loadStats(stats) {
+        return Object.entries(stats)
+            .filter(([name, value]) => !['total'].includes(name))
+            .map(([name, value]) =>
+                `<div class="stat-row">
         <div>${name}</div>
         <div class="stat-bar">
           <div class="stat-bar-bg" style="width: ${100 * value / 250}%">${value}</div>
         </div>
       </div>`
-      )
-      .join('')
-  }
+            )
+            .join('')
+    }
 
-  loadTypes(pokemonTypes)
+    loadTypes(pokemonTypes)
 });
