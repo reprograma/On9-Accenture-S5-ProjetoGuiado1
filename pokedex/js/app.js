@@ -11,52 +11,6 @@ function filterPokemon(name, type) {
   return listaFiltrada;
 }
 
-/* Primeira forma de fazer a função de ordenação
-function sortPokemon(filteredList, sortExpression) {
-  let listaOrdenada = [];
-
-  if (sortExpression == "ID (asc)") {
-    listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
-      return pokemonA.id - pokemonB.id;
-    });
-  }
-
-  if (sortExpression == "ID (desc)") {
-    listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
-      return pokemonA.id - pokemonB.id;
-    });
-    listaOrdenada.reverse();
-  }
-
-  if (sortExpression == "A-Z") {
-    listaOrdenada = filteredList.sort(function (pokemonA, pokemonB) {
-      if (pokemonA.name > pokemonB.name) {
-        return 1;
-      }
-      if (pokemonA.name < pokemonB.name) {
-        return -1;
-      }
-      // a deve ser igual a b
-      return 0;
-    });
-  }
-
-  if (sortExpression == "Z-A") {
-    listaOrdenada = filteredList.sort(function (pokemonA, pokemonB) {
-      if (pokemonA.name > pokemonB.name) {
-        return -1;
-      }
-      if (pokemonA.name < pokemonB.name) {
-        return 1;
-      }
-      // a deve ser igual a b
-      return 0;
-    });
-  }
-  return listaOrdenada;
-} */
-
-// Segunda forma de fazer a função de ordenação
 function sortPokemon(filteredList, sortExpression) {
   let listaOrdenada = [];
   console.log(sortExpression);
