@@ -53,10 +53,6 @@ function sortPokemon(filteredList, sortExpression) {
   return listaOrdenada;
 }
 
-function deletePokemon(id) {
-  // Seu código aqui
-}
-
 function addPokemon(
   name,
   hp,
@@ -67,15 +63,39 @@ function addPokemon(
   specialDefense,
   types
 ) {
-  // Seu código aqui
-  // Atenção: types vem como uma stringona, cabe a você transformar num array
+  pokemonList.push({
+    id: pokemonList[pokemonList.length - 1].id + 1,
+    name: name,
+    stats: {
+      hp: hp,
+      attack: attack,
+      defense: defense,
+      speed: speed,
+      "sp-atk": specialAttack,
+      "sp-def": specialDefense,
+      total: hp + attack + defense + speed + specialAttack + specialDefense,
+    },
+    type: types.split(";"),
+  });
 }
 
 function getPokemon(id) {
-  // Seu código aqui
+  let pokemonBusca = pokemonList.filter((pokemon) => {
+    return pokemon.id == id;
+  });
+  if (pokemonBusca.length == 0) {
+    return;
+  }
+  return pokemonBusca[0];
+}
 
-  // Retorne um pokemon da lista que tenha o id enviado
-  return {};
+function deletePokemon(id) {
+  let pokemonDeletar = getPokemon(id);
+  let index = pokemonList.indexOf(pokemonDeletar[0]);
+  if (index > -1) {
+    pokemonList.splice(index, 1);
+  }
+  return pokemonList;
 }
 
 function editPokemon(
@@ -89,6 +109,21 @@ function editPokemon(
   specialDefense,
   types
 ) {
-  // Seu código aqui
-  // Atenção: types vem como uma stringona, cabe a você transformar num array
+  for (let index = 0; index < pokemonList.length; index++) {
+    if (pokemonList[index].id == id) {
+      pokemonList[index].name = name;
+      pokemonList[index].stats.hp = hp;
+      pokemonList[index].stats.attack = attack;
+      pokemonList[index].stats.defense = defense;
+      pokemonList[index].stats.speed = speed;
+      pokemonList[index].stats["sp-atk"] = specialAttack;
+      pokemonList[index].stats["sp-def"] = specialDefense;
+      pokemonList[index].stats.total =
+        hp + attack + defense + speed + specialAttack + specialDefense;
+      pokemonList[index].type = types.split(";");
+      break;
+    }
+  }
+
+  return pokemonList;
 }
