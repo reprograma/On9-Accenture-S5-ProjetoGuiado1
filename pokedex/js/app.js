@@ -54,11 +54,10 @@ function sortPokemon(filteredList, sortExpression) {
     return listaOrdenada;
 }
 
-
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
 
     types = types.split(';');
-    types = types.slice(0, types.length - 1);
+    types.pop();
 
     const addingPokemon = {
         id: pokemonList.length + 1,
@@ -79,39 +78,39 @@ function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefe
 
 }
 
-function getPokemon(id) {
-    const findPokemon = pokemonList.findIndex(pokemon => pokemon.id === id);
 
-    return findPokemon; // retorna id do pokemon
+function getPokemon(id) {
+    /* const findPokemon = pokemonList.findIndex(pokemon => pokemon.id === id);
+
+    return findPokemon; */ // retorna id do pokemon
+    const findPokemon = pokemonList.find(pokemon => pokemon.id == id);
+    return findPokemon;
 }
 
 function deletePokemon(id) {
-    //findPokemon = pokemonList.findIndex(pokemon => pokemon.id === id);
-    //pokemonList.splice(findPokemon, 1);
-    pokemonList.splice(getPokemon(id), 1);
 
+    //pokemonList.splice(getPokemon(id), 1);
+
+    let pokemonId = getPokemon(id);
+    let position = pokemonList.indexOf(pokemonId)
+    return pokemonList.splice(position, 1);
 }
 
 
-
 function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
-    //let pokemonId = getPokemon(id);
-    let pokemonId = pokemonList.findIndex(pokemon => pokemon.id == id);
 
-    types = types.split(';');
-    types = types.slice(0, types.length - 1);
+    let arrayType = types.split(';');
 
-    pokemonList[pokemonId] = {
-        //id: id,
-        name: name,
-        type: types,
-        stats: {
-            hp: hp,
-            attack: attack,
-            defense: defense,
-            'sp-atk': specialAttack,
-            'sp-def': specialDefense,
-            speed: speed
-        }
-    };
+    arrayType.pop()
+
+    getPokemon(id).name = name;
+    getPokemon(id).stats.hp = hp;
+    getPokemon(id).stats.attack = attack;
+    getPokemon(id).stats.defense = defense;
+    getPokemon(id).stats.speed = speed;
+    getPokemon(id)['stats']['sp-atk'] = specialAttack;
+    getPokemon(id)['stats']['sp-def'] = specialDefense;
+    getPokemon(id).type = arrayType;
+
+
 }
