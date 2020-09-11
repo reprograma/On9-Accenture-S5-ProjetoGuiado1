@@ -53,49 +53,32 @@ function sortPokemon(filteredList, sortExpression) {
   return listaOrdenada;
 }
 
-function addPokemon(
-  name,
-  hp,
-  attack,
-  defense,
-  speed,
-  specialAttack,
-  specialDefense,
-  types
-) {
-  pokemonList.push({
-    id: pokemonList[pokemonList.length - 1].id + 1,
-    name: name,
-    stats: {
-      hp: hp,
-      attack: attack,
-      defense: defense,
-      speed: speed,
-      "sp-atk": specialAttack,
-      "sp-def": specialDefense,
-      total: hp + attack + defense + speed + specialAttack + specialDefense,
-    },
-    type: types.split(";"),
-  });
-}
-
 function getPokemon(id) {
-  let pokemonBusca = pokemonList.filter((pokemon) => {
-    return pokemon.id == id;
-  });
-  if (pokemonBusca.length == 0) {
-    return;
-  }
-  return pokemonBusca[0];
+  // let pokemonBusca = pokemonList.filter((pokemon) => {
+  //   return pokemon.id == id;
+  // });
+  // if (pokemonBusca.length == 0) {
+  //   return;
+  // }
+  // return pokemonBusca[0];
+
+  let pokemonBusca = pokemonList.find((pokemon) => pokemon.id == id);
+  return pokemonBusca;
 }
 
 function deletePokemon(id) {
-  let pokemonDeletar = getPokemon(id);
-  let index = pokemonList.indexOf(pokemonDeletar[0]);
-  if (index > -1) {
-    pokemonList.splice(index, 1);
-  }
-  return pokemonList;
+  // let pokemonDeletar = getPokemon(id);
+  // let index = pokemonList.indexOf(pokemonDeletar[0]);
+  // if (index > -1) {
+  //   pokemonList.splice(index, 1);
+  // }
+  // return pokemonList;
+
+  // let pokemonDeletar = getPokemon(id);
+  // let index = pokemonList.indexOf(pokemonDeletar);
+  // pokemonList.splice(index, 1);
+
+  pokemonList = pokemonList.filter((pokemon) => pokemon.id != id);
 }
 
 function editPokemon(
@@ -126,4 +109,30 @@ function editPokemon(
   }
 
   return pokemonList;
+}
+
+function addPokemon(
+  name,
+  hp,
+  attack,
+  defense,
+  speed,
+  specialAttack,
+  specialDefense,
+  types
+) {
+  pokemonList.push({
+    id: pokemonList[pokemonList.length - 1].id + 1,
+    name: name,
+    stats: {
+      hp: hp,
+      attack: attack,
+      defense: defense,
+      speed: speed,
+      "sp-atk": specialAttack,
+      "sp-def": specialDefense,
+      total: hp + attack + defense + speed + specialAttack + specialDefense,
+    },
+    type: types.split(";"),
+  });
 }
