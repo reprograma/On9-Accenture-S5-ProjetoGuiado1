@@ -58,7 +58,7 @@ $(document).ready(function () {
     $("#def").val("");
     $("#speed").val("");
     $("#satk").val("");
-    $("#def").val("");
+    $("#sdef").val("");
 
     $(".type").prop("checked", false);
   }
