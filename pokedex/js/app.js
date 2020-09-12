@@ -92,23 +92,37 @@ function editPokemon(
   specialDefense,
   types
 ) {
-  for (let index = 0; index < pokemonList.length; index++) {
-    if (pokemonList[index].id == id) {
-      pokemonList[index].name = name;
-      pokemonList[index].stats.hp = hp;
-      pokemonList[index].stats.attack = attack;
-      pokemonList[index].stats.defense = defense;
-      pokemonList[index].stats.speed = speed;
-      pokemonList[index].stats["sp-atk"] = specialAttack;
-      pokemonList[index].stats["sp-def"] = specialDefense;
-      pokemonList[index].stats.total =
-        hp + attack + defense + speed + specialAttack + specialDefense;
-      pokemonList[index].type = types.split(";");
-      break;
-    }
-  }
+  // for (let index = 0; index < pokemonList.length; index++) {
+  //   if (pokemonList[index].id == id) {
+  //     pokemonList[index].name = name;
+  //     pokemonList[index].stats.hp = hp;
+  //     pokemonList[index].stats.attack = attack;
+  //     pokemonList[index].stats.defense = defense;
+  //     pokemonList[index].stats.speed = speed;
+  //     pokemonList[index].stats["sp-atk"] = specialAttack;
+  //     pokemonList[index].stats["sp-def"] = specialDefense;
+  //     pokemonList[index].stats.total =
+  //       hp + attack + defense + speed + specialAttack + specialDefense;
+  //     pokemonList[index].type = types.split(";");
+  //     break;
+  //   }
+  // }
 
-  return pokemonList;
+  // return pokemonList;
+
+  let pokemon = getPokemon(id);
+  let listaType = types.split(";");
+  let indice = listaType.indexOf("");
+  listaType.splice(indice, 1);
+
+  pokemon.name = name;
+  pokemon.stats.hp = hp;
+  pokemon.stats.attack = attack;
+  pokemon.stats.defense = defense;
+  pokemon.stats.speed = speed;
+  pokemon["stats"]["sp-atk"] = specialAttack;
+  pokemon["stats"]["sp-def"] = specialDefense;
+  pokemon.type = listaType;
 }
 
 function addPokemon(
@@ -121,8 +135,48 @@ function addPokemon(
   specialDefense,
   types
 ) {
-  pokemonList.push({
-    id: pokemonList[pokemonList.length - 1].id + 1,
+  // pokemonList.push({
+  //   id: pokemonList[pokemonList.length - 1].id + 1,
+  //   name: name,
+  //   stats: {
+  //     hp: hp,
+  //     attack: attack,
+  //     defense: defense,
+  //     speed: speed,
+  //     "sp-atk": specialAttack,
+  //     "sp-def": specialDefense,
+  //     total: hp + attack + defense + speed + specialAttack + specialDefense,
+  //   },
+  //   type: types.split(";"),
+  // });
+
+  let max;
+  for (let i = 0; i < pokemonList.length; i++) {
+    let a, b;
+
+    a = pokemonList[i];
+    b = pokemonList[i + 1];
+
+    if (!b) {
+      b = 0;
+    }
+
+    if (a.id > b.id) {
+      max = a.id;
+    } else if (b.id > a.id) {
+      max = b.id;
+    } else if (a.id === b.id) {
+      max = a.id;
+    }
+  }
+
+  let arrayTypes = types.split(";");
+  arrayTypes = arrayTypes.filter((type) => type != "");
+
+  let pokemon = new Object();
+
+  pokemon = {
+    id: max + 1,
     name: name,
     stats: {
       hp: hp,
@@ -131,8 +185,9 @@ function addPokemon(
       speed: speed,
       "sp-atk": specialAttack,
       "sp-def": specialDefense,
-      total: hp + attack + defense + speed + specialAttack + specialDefense,
     },
-    type: types.split(";"),
-  });
+    type: arrayTypes,
+  };
+
+  pokemonList.push(pokemon);
 }
