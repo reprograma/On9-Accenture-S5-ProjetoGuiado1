@@ -13,7 +13,7 @@ function filterPokemon(name, type) {
 
 
 function sortPokemon(filteredList, sortExpression) {
-    
+    // pode ser usado o if else, mas switch case fica mais "enxuto"
     let listaOrdenada = [];
     console.log(sortExpression);
     switch (sortExpression) {
@@ -58,16 +58,19 @@ function sortPokemon(filteredList, sortExpression) {
 
 
 function deletePokemon(id) {
-    // Seu código aqui
+    let pokemonDelete = getPokemon(id);
+    let indice = pokemonList.indexOf(pokemonDelete); 
+    return pokemonList.splice(indice, 1);
+
 }
 
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     
-    types = types.split(";")
-    types = types.slice(0, types.length -1)
+    let type = types.split(";");
+    type.pop(); // não era necessário o slice, pop deixa mais simples
     const pokemon = {
         name: name,
-        status: {
+        stats: {
             hp: hp,
             attack: attack,
             defense: defense,
@@ -75,19 +78,21 @@ function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefe
             'sp-atk': specialAttack,
             'sp-def': specialDefense,
         },
-        type:  types,
-        id = pokemonList.length + 1,
+        type:  type,
+        id: pokemonList.length + 1,
     };
     
-    pokemonList.push(pokemon);
+    return pokemonList.push(pokemon);
 }
 
 function getPokemon(id) {
-    
-    return pokemonList.find(pokemon => pokemon.id == id);
+    const getP = pokemonList.find(pokemon => pokemon.id == id);
+    return getP;
 }
 
 function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
     // Atenção: types vem como uma stringona, cabe a você transformar num array
 }
+    
+    

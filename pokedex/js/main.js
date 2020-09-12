@@ -31,6 +31,11 @@ $(document).ready(function () {
     $(".modal").modal('show')
   })
 
+  $('.btn-save').on('click', function (e) { //Coloquei o botão salvar para sair da tela
+    e.preventDefault()
+    $(".modal").modal('hide')
+  })
+
   function cleanForm() {
     $("#id").val(0)
     $("#name").val("")
@@ -72,6 +77,7 @@ $(document).ready(function () {
 
     const filteredList = filterPokemon(name, type);
     load(filteredList);
+    console.log(filteredList)
 
     return filteredList;
   }
