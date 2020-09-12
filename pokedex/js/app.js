@@ -1,36 +1,121 @@
 let pokemonList = [];
 
 function filterPokemon(name, type) {
-    // Seu código aqui
+    const listaFiltrada = pokemonList.filter(pokemon => {
+        const searchName = new RegExp(name, 'i');
+        const checkName = searchName.test(pokemon.name);
+        
+        const listaTipos = pokemon.type;
+        const checkType = type.length == 0 ? true : listaTipos.includes(type);
 
-    // Retorne a lista filtrada
-    return [];
+        return checkName && checkType;
+    });
+    return listaFiltrada;
 }
+
 
 function sortPokemon(filteredList, sortExpression) {
-    // Seu código aqui
+    let listaOrdenada = [];
 
-    // Retorne a lista ordenada
-    return [];
-}
+    switch (sortExpression) {
+        case 'ID (asc)':
+            listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+                return pokemonA.id - pokemonB.id;
+            });
+            break;
+        case 'ID (desc)':
+            listaOrdenada = filteredList.sort(function (pokemonA, pokemonB) {
+                return pokemonA.id - pokemonB.id;
+            });
+            listaOrdenada.reverse();
+            break;
+        case 'A-Z':
+            listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+                if (pokemonA.name > pokemonB.name) {
+                    return 1;
+                }
+                if (pokemonA.name < pokemonB.name) {
+                    return -1;
+                }
+                return 0;
+            })
+            break;
+        case 'Z-A':
+            listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+                if (pokemonA.name > pokemonB.name) {
+                    return -1;
+                }
+                if (pokemonA.name < pokemonB.name) {
+                    return 1;
+                }
+                return 0;
+            })
+            break;
+        default:
+            listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+                return pokemonA.id - pokemonB.id;
+            });
+            break;
+    }
 
-function deletePokemon(id) {
-    // Seu código aqui
+    return listaOrdenada;
 }
 
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
-    // Seu código aqui
-    // Atenção: types vem como uma stringona, cabe a você transformar num array
+
+    types = types.split(';');
+    types.pop()
+
+    const newPokemon = {
+        id: (pokemonList.length + 1),
+        name: name,
+        stats: {
+            hp: hp,
+            attack: attack,
+            defense: defense,
+            speed: speed,
+            'sp-atk': specialAttack,
+            'sp-def': specialDefense
+        },
+        type: types
+    }
+    return pokemonList.push(newPokemon); 
 }
 
 function getPokemon(id) {
-    // Seu código aqui
 
-    // Retorne um pokemon da lista que tenha o id enviado
-    return {};
+//     let pokemon = {};
+//     let encontrado = false;
+//     let contador = 0;
+
+//     while(!encontrado){
+
+//     if(pokemonList[contador].id == id) {
+//          pokemon = pokemonList[contador];
+//            encontrado = true;
+//     } else {
+//          contador++;
+//      }
+//     };
+
+//   // return pokemon;
+
+ const pokemon = pokemonList.find(pokemon => pokemon.id == id);
+ return pokemon;
 }
 
 function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
-    // Seu código aqui
-    // Atenção: types vem como uma stringona, cabe a você transformar num array
-}
+    let pokemon = getPokemon(id);
+    let listaType = types.split(';');
+    let indice = listaType.indexOf("");
+    listaType.splice(indice, 1);
+
+    pokemon.name = name;
+    pokemon.stats.hp = hp;
+    pokemon.stats.attack = attack;
+    pokemon.stats.defense = defense;
+    pokemon.stats.speed = speed;
+    pokemon['stats']['sp-atk'] = specialAttack;
+    pokemon['stats']['sp-def'] = specialDefense;
+    pokemon.type = listaType;
+}  
