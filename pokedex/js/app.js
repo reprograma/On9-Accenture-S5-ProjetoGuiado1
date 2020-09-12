@@ -8,7 +8,6 @@ function filterPokemon(name, type) {
     const checkType = type.length == 0 ? true : pokemon.type.includes(type);
     return checkName && checkType;
   });
-  // Retorne a lista filtrada
   return filterList;
 }
 
