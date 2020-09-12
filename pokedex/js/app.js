@@ -1,12 +1,21 @@
 let pokemonList = [];
 
 function filterPokemon(name, type) {
-    // Seu código aqui
+    const listaFiltrada = pokemonList.filter(pokemon => {
+        console.log(type)
+        const searchName = new RegExp(name, 'i'); 
+        const checkName = searchName.test(pokemon.name);
+        console.log(type);
+        console.log(pokemon.type);
+        const checkType = type.length == 0 ? true : pokemon.type.includes(type);
 
-    // Retorne a lista filtrada
-    return [];
-}
+            return checkName && checkType;
+        })
 
+       return listaFiltrada;
+    }
+
+ 
 function sortPokemon(filteredList, sortExpression) {
     // Seu código aqui
 
