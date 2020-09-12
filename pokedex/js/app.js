@@ -1,20 +1,28 @@
 let pokemonList = [];
 
 function filterPokemon(name, type) {
-    const listafiltrada = pokemonList.filter(pokemon => {
+    const listaFiltrada = pokemonList.filter(pokemon => {
         const searchName = new RegExp(name, 'i');
         const checkName = searchName.test(pokemon.name);
-        // condicão ? atente se verdadeiro : atende se falso
-        const checkType = type.length == 0 ? true : pokemon.type.includes(type);
+        
+        const listaTipos = pokemon.type;
+        const checkType = type.length == 0 ? true : listaTipos.includes(type);
+
         return checkName && checkType;
-    })
-    return listafiltrada;
+    });
+    return listaFiltrada;
 }
+
 
 function sortPokemon(filteredList, sortExpression) {
     let listaOrdenada = [];
-    console.log(sortExpression);
+
     switch (sortExpression) {
+        case 'ID (asc)':
+            listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+                return pokemonA.id - pokemonB.id;
+            });
+            break;
         case 'ID (desc)':
             listaOrdenada = filteredList.sort(function (pokemonA, pokemonB) {
                 return pokemonA.id - pokemonB.id;
@@ -76,24 +84,24 @@ function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefe
 
 function getPokemon(id) {
 
-    let pokemon = {};
-    let encontrado = false;
-    let contador = 0;
+//     let pokemon = {};
+//     let encontrado = false;
+//     let contador = 0;
 
-    while(!encontrado){
+//     while(!encontrado){
 
-    if(pokemonList[contador].id == id) {
-         pokemon = pokemonList[contador];
-           encontrado = true;
-    } else {
-         contador++;
-     }
-    };
+//     if(pokemonList[contador].id == id) {
+//          pokemon = pokemonList[contador];
+//            encontrado = true;
+//     } else {
+//          contador++;
+//      }
+//     };
 
-   return pokemon;
+//   // return pokemon;
 
-    const pokemon = pokemonList.find(pokemon => pokemon.id == id);
-    return pokemon;
+ const pokemon = pokemonList.find(pokemon => pokemon.id == id);
+ return pokemon;
 }
 
 function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
