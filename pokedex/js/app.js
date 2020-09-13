@@ -32,20 +32,31 @@ function sortPokemon(filteredList, sortExpression) {
     }
 
     if (sortExpression == 'ID (desc)') {
-        listaOrdenada = filteredList.sort ((pokemonA, pokemonB) => {
+        listaOrdenada = filteredList.sort ((pokemonA, pokemonB)  =>  {
           return pokemonA.id - pokemonB.id;
 
 
         });      
         listaOrdenada.reverse();
 
-    }
-    return listaOrdenada;
 
+    } 
+}
 
-    }
+    if (sortExpression == 'A-Z'){
+        listaOrdenada = filteredList.sort ((pokemonA, pokemonB) => {
+            if (pokemonA.name > pokemonB.name){
+                return 1;
+            }
+            if (pokemonA.name < pokemonB.name){
+                return -1;
+            }
+            return 0;
+
+    })
   
-  
+}
+
 
 function deletePokemon(id) {
     // Seu código aqui
