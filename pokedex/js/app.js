@@ -97,9 +97,19 @@ function getPokemon(id) {
 }
 
 function deletePokemon(id) {
-    // Seu código aqui
+    //Encontrar pokemon, na pokemonList e deletar o pokemon que eu encontrei da pokemon list
 
-}
+   // let pokemon = getPokemon (id);
+    //let indice = pokemonList.indexOf(pokemon);
+    //console.log(indice);
+    //pokemonList.splice(indice,1);
+
+    pokemonList = pokemonList.filter(pokemon => pokemon.id != id);
+
+    }
+    
+
+
 
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
