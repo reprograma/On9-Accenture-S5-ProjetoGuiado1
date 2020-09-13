@@ -2,11 +2,9 @@ let pokemonList = [];
 
 function filterPokemon(name, type) {
     const listaFiltrada = pokemonList.filter(pokemon => {
-        console.log(type)
+       
         const searchName = new RegExp(name, 'i'); 
         const checkName = searchName.test(pokemon.name);
-        console.log(type);
-        console.log(pokemon.type);
         const checkType = type.length == 0 ? true : pokemon.type.includes(type);
 
             return checkName && checkType;
@@ -15,13 +13,39 @@ function filterPokemon(name, type) {
        return listaFiltrada;
     }
 
+    function validPokemon (pokemon, name, type){
+        const searchName = new RegExp(name,'i');
+        const checkName = searchName.test(pokemon.name);
+        const checkType = type.length == 0 ? true : pokemon.type.includes(type);
+        return checkName && checkType;
+
+    }
  
 function sortPokemon(filteredList, sortExpression) {
-    // Seu código aqui
+    console.log (sortExpression);
 
-    // Retorne a lista ordenada
-    return [];
-}
+    let listaOrdenada=[];
+    if (sortExpression == 'ID (asc)'){
+        listaOrdenada = filteredList.sort((pokemonA,pokemonB) => {
+            return pokemonA.id - pokemonB.id;
+});
+    }
+
+    if (sortExpression == 'ID (desc)') {
+        listaOrdenada = filteredList.sort ((pokemonA, pokemonB) => {
+          return pokemonA.id - pokemonB.id;
+
+
+        });      
+        listaOrdenada.reverse();
+
+    }
+    return listaOrdenada;
+
+
+    }
+  
+  
 
 function deletePokemon(id) {
     // Seu código aqui
