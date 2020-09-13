@@ -31,12 +31,13 @@ function validPokemon (pokemon, name, type){
 function sortPokemon(filteredList, sortExpression) {
     let listaOrdenada = [];
 
-    switch (sortExpression){
-        case 'ID (asc)':
-            listaOrdenada = filteredList.sort((pokemonA,pokemonB) => {
-                return pokemonA.id - pokemonB.id;
-            });
-            break;
+   switch (sortExpression){
+       // O Ascendente está no escopo do Default
+        //case 'ID (asc)':
+            //listaOrdenada = filteredList.sort((pokemonA,pokemonB) => {
+                //return pokemonA.id - pokemonB.id;
+            //});
+           // break;
         case 'ID (desc)':
             listaOrdenada = filteredList.sort (function(pokemonA, pokemonB) {
                 return pokemonA.id - pokemonB.id;  
@@ -71,17 +72,33 @@ function sortPokemon(filteredList, sortExpression) {
             return 0;
 
             })
+            break;
+
+        default:
+            listaOrdenada = filteredList.sort((pokemonA,pokemonB) => {
+                return pokemonA.id - pokemonB.id;
+            });
+            break;    
     }
-
-
     
     return listaOrdenada;
 }
 
   
+function getPokemon(id) {
+    const pokemon = pokemonList.find(pokemon =>
+    {
+        console.log (pokemonList.indexOf(pokemon));
+        return pokemon.id === id
+
+    });
+   
+    return pokemon;
+}
 
 function deletePokemon(id) {
     // Seu código aqui
+
 }
 
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
@@ -89,12 +106,7 @@ function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefe
     // Atenção: types vem como uma stringona, cabe a você transformar num array
 }
 
-function getPokemon(id) {
-    // Seu código aqui
 
-    // Retorne um pokemon da lista que tenha o id enviado
-    return {};
-}
 
 function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
