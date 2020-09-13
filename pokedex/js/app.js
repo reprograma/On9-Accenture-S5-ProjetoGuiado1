@@ -1,5 +1,7 @@
 let pokemonList = [];
 
+// Filtro
+
 function filterPokemon(name, type) {
     const listaFiltrada = pokemonList.filter(pokemon => {
        
@@ -13,7 +15,9 @@ function filterPokemon(name, type) {
        return listaFiltrada;
     }
 
-    function validPokemon (pokemon, name, type){
+    // Filtro nome e tipo
+
+function validPokemon (pokemon, name, type){
         const searchName = new RegExp(name,'i');
         const checkName = searchName.test(pokemon.name);
         const checkType = type.length == 0 ? true : pokemon.type.includes(type);
@@ -22,43 +26,40 @@ function filterPokemon(name, type) {
     }
 
 
-
+// Filtro ID Crescente
  
 function sortPokemon(filteredList, sortExpression) {
-    console.log (sortExpression);
+    let listaOrdenada = [];
 
-    let listaOrdenada=[];
-    if (sortExpression == 'ID (asc)'){
-        listaOrdenada = filteredList.sort((pokemonA,pokemonB) => {
-            return pokemonA.id - pokemonB.id;
-});
-    }
+    switch (sortExpression){
+        case 'ID (asc)':
+            listaOrdenada = filteredList.sort((pokemonA,pokemonB) => {
+                return pokemonA.id - pokemonB.id;
+            });
+            break;
+        case 'ID (desc)':
+            listaOrdenada = filteredList.sort (function(pokemonA, pokemonB) {
+                return pokemonA.id - pokemonB.id;  
+                
+            });
+            listaOrdenada.reverse();
+            break;
+        case 'A-Z':
+                listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+                    if(pokemonA.name > pokemonB.name) {
+                        return 1;
+                }
+                    if(pokemonA.name < pokemonB.name) {
+                        return -1;
+                    }
+        
+                    return 0;
+        
+                })
+                 break;
 
-    if (sortExpression == 'ID (desc)'){
-        listaOrdenada = filteredList.sort ((pokemonA, pokemonB) => {
-            return pokemonA.id - pokemonB.id;   
 
-        });
-        listaOrdenada.reverse();
-       
-
-    }
-
-    if (sortExpression == 'A-Z') {
-        listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
-            if(pokemonA.name > pokemonB.name) {
-                return 1;
-        }
-            if(pokemonA.name < pokemonB.name) {
-                return -1;
-            }
-
-            return 0;
-
-            })
-    }
-
-    if (sortExpression == 'Z-A') {
+        case 'Z-A':
         listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
             if(pokemonA.name > pokemonB.name) {
                 return -1;
@@ -77,8 +78,6 @@ function sortPokemon(filteredList, sortExpression) {
     return listaOrdenada;
 }
 
-
-  
   
 
 function deletePokemon(id) {
