@@ -20,6 +20,9 @@ function filterPokemon(name, type) {
         return checkName && checkType;
 
     }
+
+
+
  
 function sortPokemon(filteredList, sortExpression) {
     console.log (sortExpression);
@@ -31,32 +34,52 @@ function sortPokemon(filteredList, sortExpression) {
 });
     }
 
-    if (sortExpression == 'ID (desc)') {
-        listaOrdenada = filteredList.sort ((pokemonA, pokemonB)  =>  {
-          return pokemonA.id - pokemonB.id;
-
-
-        });      
-        listaOrdenada.reverse();
-
-
-    } 
-}
-
-    if (sortExpression == 'A-Z'){
+    if (sortExpression == 'ID (desc)'){
         listaOrdenada = filteredList.sort ((pokemonA, pokemonB) => {
-            if (pokemonA.name > pokemonB.name){
+            return pokemonA.id - pokemonB.id;   
+
+        });
+        listaOrdenada.reverse();
+       
+
+    }
+
+    if (sortExpression == 'A-Z') {
+        listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+            if(pokemonA.name > pokemonB.name) {
                 return 1;
-            }
-            if (pokemonA.name < pokemonB.name){
+        }
+            if(pokemonA.name < pokemonB.name) {
                 return -1;
             }
+
             return 0;
 
-    })
-  
+            })
+    }
+
+    if (sortExpression == 'Z-A') {
+        listaOrdenada = filteredList.sort((pokemonA, pokemonB) => {
+            if(pokemonA.name > pokemonB.name) {
+                return -1;
+        }
+            if(pokemonA.name < pokemonB.name) {
+                return 1;
+            }
+
+            return 0;
+
+            })
+    }
+
+
+    
+    return listaOrdenada;
 }
 
+
+  
+  
 
 function deletePokemon(id) {
     // Seu código aqui
