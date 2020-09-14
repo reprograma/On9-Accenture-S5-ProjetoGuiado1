@@ -131,6 +131,8 @@ function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specia
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
     // Atenção: types vem como uma stringona, cabe a você transformar num array
+
+
+
+
 }
-
-
