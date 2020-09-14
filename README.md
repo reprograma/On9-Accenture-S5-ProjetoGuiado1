@@ -1,6 +1,10 @@
-# On9-Accenture-S5-ProjetoGuiado1
+# On9-Accenture-S5-ProjetoGuiado1 #
 
-Pokedex em Javascript
+<p align="center">Pokedex em Javascript</p>
+
+<p align="center">
+  <img src="pokedex/img/pokedex.gif"></img>
+</p>
 
 ## Objetivos
 
