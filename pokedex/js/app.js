@@ -89,7 +89,7 @@ function getPokemon(id) {
     const pokemon = pokemonList.find(pokemon =>
     {
         console.log (pokemonList.indexOf(pokemon));
-        return pokemon.id === id
+        return pokemon.id == id
 
     });
    
@@ -109,7 +109,24 @@ function deletePokemon(id) {
     }
     
 
+function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
+   let pokemon = getPokemon(id);
+   let listaType = type.splite(';');
+   let indice = listaType.indexOf ("");
 
+   listaType=lista.splice (indice,1);
+
+
+   pokemon.name = name;
+   pokemon.stats.hp = hp;
+   pokemon.stats.attack = attack;
+   pokemon.stats.defense = defense;
+   pokemon.stats.speed = speed;
+   pokemon['stats'] ['sp-atk'] = specialAttack;
+   pokemon['stats'] ['sp-def'] = specialDefense;
+   pokemon.type = listaType;
+   
+}
 
 function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
     // Seu código aqui
@@ -117,8 +134,3 @@ function addPokemon(name, hp, attack, defense, speed, specialAttack, specialDefe
 }
 
 
-
-function editPokemon(id, name, hp, attack, defense, speed, specialAttack, specialDefense, types) {
-    // Seu código aqui
-    // Atenção: types vem como uma stringona, cabe a você transformar num array
-}
