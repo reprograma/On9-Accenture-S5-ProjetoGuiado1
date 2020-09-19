@@ -56,12 +56,12 @@ $(document).ready(function () {
       addPokemon($("#name").val(), $("#hp").val(),
         $("#atk").val(), $("#def").val(),
         $("#speed").val(), $("#satk").val(),
-        $("#def").val(), types)
+        $("#sdef").val(), types)
     } else {
       editPokemon($("#id").val(), $("#name").val(), $("#hp").val(),
         $("#atk").val(), $("#def").val(),
         $("#speed").val(), $("#satk").val(),
-        $("#def").val(), types)
+        $("#sdef").val(), types)
     }
     load(pokemonList)
   })
